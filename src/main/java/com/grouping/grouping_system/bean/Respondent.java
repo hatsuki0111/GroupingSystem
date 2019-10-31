@@ -11,4 +11,8 @@ import lombok.Data;
 public class Respondent {
     private long enqueteId;
     private String accountName;
+
+    public Respondent() {
+        this(0, "");
+    }
 }

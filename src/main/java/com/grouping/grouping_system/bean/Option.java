@@ -12,4 +12,8 @@ public class Option {
     private long enqueteId;
     private String label;
     private boolean authorized;     // 承認されたかどうか
+
+    public Option(){
+        this(0,"",false);
+    }
 }
