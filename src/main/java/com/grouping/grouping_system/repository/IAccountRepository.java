@@ -1,6 +1,7 @@
 package com.grouping.grouping_system.repository;
 
 import com.grouping.grouping_system.bean.Account;
+import com.grouping.grouping_system.bean.AccountNameCheck;
 
 import java.util.List;
 
@@ -13,4 +14,10 @@ public interface IAccountRepository {
      * @return {@link Account}の{@link List}
      */
     List<Account> find();
+
+    /**
+     *
+     * @return AccountNameCheck
+     */
+    List<AccountNameCheck> findName();
 }

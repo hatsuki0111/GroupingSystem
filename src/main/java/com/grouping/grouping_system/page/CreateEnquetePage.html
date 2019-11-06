@@ -6,10 +6,11 @@
 </head>
 <body>
 <div>
-    <!-- タイトル入力フォーム -->
-    <form>
-        <input wicket:id="" type="text"/>
-        <button type="submit">送信</button>
+    <form wicket:id="enqueteForm">
+        <!-- タイトル入力フォーム -->
+        <input wicket:id="enqueteTitle" type="text"/>
+        <label wicket:id="respondentCheckBox"></label>
+        <button wicket:id="submitButton" type="submit">送信</button>
     </form>
 </div>
 </body>
