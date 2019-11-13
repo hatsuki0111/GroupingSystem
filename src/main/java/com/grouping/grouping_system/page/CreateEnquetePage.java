@@ -62,14 +62,27 @@ public class CreateEnquetePage extends TemplatePage {
         var addedGroupListView = new ListView<>("addedGroupListView", groupNameListModel) {
             @Override
             protected void populateItem(ListItem<String> listItem) {
-                var groupName = listItem.getModelObject();
-                var label = new Label("groupNameLabel", groupName);
-                listItem.add(label);
+                Form form = new Form("addedGroupForm");
+                listItem.add(form);
+
+                form.add(new Label("groupNameLabel", listItem.getModelObject()));
+                // 削除ボタン
+                AjaxButton ajaxButton = new AjaxButton("deleteGroupButton"){
+                    @Override
+                    protected void onSubmit(AjaxRequestTarget target) {
+                        super.onSubmit(target);
+                        groupNameListModel.getObject().remove(listItem.getModelObject());
+                        target.add(webMarkupContainer);
+                    }
+                };
+                ajaxButton.setLabel(Model.of("削除"));
+                form.add(ajaxButton);
             }
         };
         addedGroupListView.setOutputMarkupId(true);
         webMarkupContainer.add(addedGroupListView);
 
+        // 追加ボタン
         var addGroupButton = new AjaxButton("addGroupButton") {
             @Override
             protected void onSubmit(AjaxRequestTarget target) {
