@@ -2,7 +2,13 @@ package com.grouping.grouping_system.page;
 
 import com.grouping.grouping_system.bean.Account;
 import com.grouping.grouping_system.service.IEnqueteTargetService;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.form.AjaxButton;
+import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.*;
+import org.apache.wicket.markup.html.list.ListItem;
+import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -38,5 +44,41 @@ public class CreateEnquetePage extends TemplatePage {
                 setResponsePage(EnqueteRegistrationCompletionPage.class);
             }
         });
+
+        var groupNameList = new ArrayList<String>();
+        var groupNameListModel = Model.ofList(groupNameList);
+
+        var addGroupForm = new Form("addGroupForm");
+        add(addGroupForm);
+
+        var addedGroupNameModel = Model.of("");
+        var groupNameField = new TextField<>("groupNameField", addedGroupNameModel);
+        addGroupForm.add(groupNameField);
+
+        var webMarkupContainer = new WebMarkupContainer("addedGroupWMC");
+        webMarkupContainer.setOutputMarkupId(true);
+        add(webMarkupContainer);
+
+        var addedGroupListView = new ListView<>("addedGroupListView", groupNameListModel) {
+            @Override
+            protected void populateItem(ListItem<String> listItem) {
+                var groupName = listItem.getModelObject();
+                var label = new Label("groupNameLabel", groupName);
+                listItem.add(label);
+            }
+        };
+        addedGroupListView.setOutputMarkupId(true);
+        webMarkupContainer.add(addedGroupListView);
+
+        var addGroupButton = new AjaxButton("addGroupButton") {
+            @Override
+            protected void onSubmit(AjaxRequestTarget target) {
+                super.onSubmit(target);
+                groupNameListModel.getObject().add(addedGroupNameModel.getObject());
+                target.add(webMarkupContainer);
+            }
+        };
+        addGroupForm.add(addGroupButton);
+
     }
 }

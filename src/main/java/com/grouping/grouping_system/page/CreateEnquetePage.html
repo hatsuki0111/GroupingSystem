@@ -6,12 +6,33 @@
 </head>
 <body>
 <div>
-    <form wicket:id="enqueteForm">
-        <!-- タイトル入力フォーム -->
-        <input wicket:id="enqueteTitle" type="text"/>
-        <label wicket:id="respondentCheckBox"></label>
-        <button wicket:id="submitButton" type="submit">送信</button>
-    </form>
+    <div>
+        <form wicket:id="enqueteForm">
+            <!-- タイトル入力フォーム -->
+            <input wicket:id="enqueteTitle" type="text"/>
+            <!-- 対象者選択チェックボックス -->
+            <label wicket:id="respondentCheckBox"></label>
+            <!-- TODO:送信ボタンをページ下部に配置する -->
+            <button wicket:id="submitButton" type="submit">送信</button>
+        </form>
+    </div>
+    <div>
+        <!-- グループ追加 -->
+        <form wicket:id="addGroupForm">
+            <input wicket:id="groupNameField" type="text"/>
+            <button wicket:id="addGroupButton">追加</button>
+        </form>
+    </div>
+    <div>
+        <!-- 追加されたグループ一覧 -->
+        <div wicket:id="addedGroupWMC">
+            <wicket:container wicket:id="addedGroupListView">
+                <span wicket:id="groupNameLabel"></span>
+            </wicket:container>
+        </div>
+    </div>
+
+
 </div>
 </body>
 </html>
