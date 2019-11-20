@@ -1,6 +1,5 @@
 package com.grouping.grouping_system.page;
 
-import com.grouping.grouping_system.SigningSession;
 import com.grouping.grouping_system.bean.Account;
 import com.grouping.grouping_system.bean.Enquete;
 import com.grouping.grouping_system.service.ICreateEnqueteService;
@@ -12,10 +11,10 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.*;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.model.LambdaModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 
@@ -28,13 +27,11 @@ public class CreateEnquetePage extends TemplatePage {
 
     public CreateEnquetePage() {
         var accountList = createEnqueteService.getAccountList();
-//        var enqueteModel = new Model<>(new Enquete());
-        var enqueteTitleModel = Model.of("");
+        var enqueteModel = new Model<>(new Enquete());
 
         var enqueteForm = new Form<>("enqueteForm");
         add(enqueteForm);
-        enqueteForm.add(new TextField<>("enqueteTitle", enqueteTitleModel));
-//        enqueteForm.add(new TextField<>("", LambdaModel.of(enqueteModel,Enquete::getTitle,Enquete::setTitle)));
+        enqueteForm.add(new TextField<>("enqueteTitle", LambdaModel.of(enqueteModel, Enquete::getTitle, Enquete::setTitle)));
 
         var selectedAccountModel = Model.ofList(new ArrayList<Account>());
         // 対象者のList
@@ -43,26 +40,21 @@ public class CreateEnquetePage extends TemplatePage {
                 accountList,
                 new ChoiceRenderer<>("name")));
 
+        enqueteForm.add(new LocalDateTimeField("startDate", LambdaModel.of(enqueteModel, Enquete::getStartDateTime, Enquete::setStartDateTime)));
 
-        var startDateTime = Model.of(LocalDateTime.now());
-        enqueteForm.add(new LocalDateTimeField("startDate", startDateTime));
-
-        var endDateTime = Model.of(LocalDateTime.now());
-        enqueteForm.add(new LocalDateTimeField("endDate", endDateTime));
+        enqueteForm.add(new LocalDateTimeField("endDate", LambdaModel.of(enqueteModel, Enquete::getEndDateTime, Enquete::setEndDateTime)));
 
         // 送信ボタン
         enqueteForm.add(new Button("submitButton") {
             @Override
             public void onSubmit() {
                 super.onSubmit();
-                var enquete = new Enquete();
-                enquete.setTitle(enqueteTitleModel.getObject());
-//                enquete.setAuthorAccountName(SigningSession.get().getUserName());
-                enquete.setAuthorAccountName("admin");
-                enquete.setStartDateTime(startDateTime.getObject());
-                enquete.setEndDateTime(endDateTime.getObject());
-                // TODO: DBに追加
-                createEnqueteService.registerEnquete(enquete);
+                // TODO: サインイン処理完了後にコメントアウトを外す
+                // TODO: 対象者をDBへ登録
+                // TODO: グループをDBへ登録
+//                enqueteModel.getObject().setAuthorAccountName(SigningSession.get().getUserName());
+                enqueteModel.getObject().setAuthorAccountName("admin");
+                createEnqueteService.registerEnquete(enqueteModel.getObject());
                 setResponsePage(EnqueteRegistrationCompletionPage.class);
             }
         });
