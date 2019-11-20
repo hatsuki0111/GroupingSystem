@@ -13,4 +13,11 @@ public interface IEnqueteRepository {
      * @return {@link Enquete}の{@link List}
      */
     List<Enquete> find();
+
+    /**
+     * Enqueteテーブルに{@link Enquete}を追加します
+     * @param enquete 追加する{@link Enquete}
+     * @return 追加行数
+     */
+    int insert(Enquete enquete);
 }
