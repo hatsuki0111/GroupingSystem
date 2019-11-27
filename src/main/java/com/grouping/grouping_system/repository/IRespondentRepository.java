@@ -13,4 +13,10 @@ public interface IRespondentRepository {
      * @return {@link Respondent}の{@link List}
      */
     List<Respondent> find();
+
+    /**
+     *
+     * @param respondentList
+     */
+    void insert(List<Respondent> respondentList);
 }

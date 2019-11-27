@@ -2,6 +2,7 @@ package com.grouping.grouping_system.page;
 
 import com.grouping.grouping_system.bean.Account;
 import com.grouping.grouping_system.bean.Enquete;
+import com.grouping.grouping_system.bean.Respondent;
 import com.grouping.grouping_system.service.ICreateEnqueteService;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
@@ -15,6 +16,7 @@ import org.apache.wicket.model.LambdaModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 
 
@@ -43,21 +45,6 @@ public class CreateEnquetePage extends TemplatePage {
         enqueteForm.add(new LocalDateTimeField("startDate", LambdaModel.of(enqueteModel, Enquete::getStartDateTime, Enquete::setStartDateTime)));
 
         enqueteForm.add(new LocalDateTimeField("endDate", LambdaModel.of(enqueteModel, Enquete::getEndDateTime, Enquete::setEndDateTime)));
-
-        // 送信ボタン
-        enqueteForm.add(new Button("submitButton") {
-            @Override
-            public void onSubmit() {
-                super.onSubmit();
-                // TODO: サインイン処理完了後にコメントアウトを外す
-                // TODO: 対象者をDBへ登録
-                // TODO: グループをDBへ登録
-//                enqueteModel.getObject().setAuthorAccountName(SigningSession.get().getUserName());
-                enqueteModel.getObject().setAuthorAccountName("admin");
-                createEnqueteService.registerEnquete(enqueteModel.getObject());
-                setResponsePage(EnqueteRegistrationCompletionPage.class);
-            }
-        });
 
         var groupNameListModel = Model.ofList(new ArrayList<String>());
 
@@ -106,5 +93,21 @@ public class CreateEnquetePage extends TemplatePage {
         };
         addGroupForm.add(addGroupButton);
 
+        // 送信ボタン
+        enqueteForm.add(new Button("submitButton") {
+            @Override
+            public void onSubmit() {
+                super.onSubmit();
+                // TODO: EnqueteにuserNameをいれる
+                // TODO: createEnqueteServiceのregisterEnquete()を呼び出す
+//                enqueteModel.getObject().setAuthorAccountName(SigningSession.get().getUserName());
+                enqueteModel.getObject().setAuthorAccountName("admin");
+//                var respondentList = new ArrayList<Respondent>();
+//                selectedAccountModel.getObject().stream().forEach(l->respondentList.add(new Respondent(0,l.getName()));
+
+//                createEnqueteService.registerEnquete();
+                setResponsePage(EnqueteRegistrationCompletionPage.class);
+            }
+        });
     }
 }

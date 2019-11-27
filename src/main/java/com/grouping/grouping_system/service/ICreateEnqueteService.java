@@ -2,6 +2,8 @@ package com.grouping.grouping_system.service;
 
 import com.grouping.grouping_system.bean.Account;
 import com.grouping.grouping_system.bean.Enquete;
+import com.grouping.grouping_system.bean.Option;
+import com.grouping.grouping_system.bean.Respondent;
 
 import java.util.List;
 
@@ -12,9 +14,10 @@ public interface ICreateEnqueteService { /**
     List<Account> getAccountList();
 
     /**
-     * enqueteテーブルに{@link Enquete}を追加します
-     * @param enquete 追加する{@link Enquete}
-     * @return 追加件数
+     *
+     * @param enquete
+     * @param optionList
+     * @param respondentList
      */
-    int registerEnquete(Enquete enquete);
+    void registerEnquete(Enquete enquete,List<Option> optionList,List<Respondent> respondentList);
 }

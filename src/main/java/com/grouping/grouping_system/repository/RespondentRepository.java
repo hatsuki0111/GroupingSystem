@@ -19,4 +19,14 @@ public class RespondentRepository implements IRespondentRepository {
         String sql = "select * from respondent";
         return jdbc.query(sql, new BeanPropertyRowMapper<>(Respondent.class));
     }
+
+    @Override
+    public void insert(List<Respondent> respondentList) {
+        for (var l : respondentList) {
+            String sql = "insert into option values(?,?)";
+            jdbc.update(sql,l.getEnqueteId(),l.getAccountName());
+        }
+    }
+
+
 }

@@ -4,7 +4,9 @@ import com.giffing.wicket.spring.boot.starter.app.WicketBootSecuredWebApplicatio
 import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+@EnableTransactionManagement
 @SpringBootApplication
 public class GroupingSystemApplication extends WicketBootSecuredWebApplication {
     public static void main(String[] args) {
