@@ -19,5 +19,5 @@ public interface IEnqueteRepository {
      * @param enquete 追加する{@link Enquete}
      * @return 追加行数
      */
-    int insert(Enquete enquete);
+    long insert(Enquete enquete);
 }

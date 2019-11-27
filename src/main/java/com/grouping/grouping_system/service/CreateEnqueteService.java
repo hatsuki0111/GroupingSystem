@@ -11,7 +11,9 @@ import com.grouping.grouping_system.repository.IRespondentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,10 +35,19 @@ public class CreateEnqueteService implements ICreateEnqueteService {
         return accountRepository.find();
     }
 
+    @Transactional
     @Override
-    public void registerEnquete(Enquete enquete, List<Option> optionList, List<Respondent> respondentList) {
-        enqueteRepository.insert(enquete);
-        optionRepository.insert(optionList);
-        respondentRepository.insert(respondentList);
+    public void registerEnquete(Enquete enquete, List<String> optionList, List<String> respondentList) {
+        long enqueteId = enqueteRepository.insert(enquete);
+        List<Option> options = new ArrayList<>();
+        for (String label : optionList){
+            options.add(new Option(enqueteId,label,true));
+        }
+        optionRepository.insert(options);
+        List<Respondent> respondents = new ArrayList<>();
+        for (String name : respondentList){
+            respondents.add(new Respondent(enqueteId,name));
+        }
+        respondentRepository.insert(respondents);
     }
 }

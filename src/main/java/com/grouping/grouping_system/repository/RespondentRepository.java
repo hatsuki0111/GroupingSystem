@@ -23,7 +23,7 @@ public class RespondentRepository implements IRespondentRepository {
     @Override
     public void insert(List<Respondent> respondentList) {
         for (var l : respondentList) {
-            String sql = "insert into option values(?,?)";
+            String sql = "insert into respondent(enquete_id, account_name) values(?,?)";
             jdbc.update(sql,l.getEnqueteId(),l.getAccountName());
         }
     }

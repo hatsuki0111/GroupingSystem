@@ -19,5 +19,5 @@ public interface ICreateEnqueteService { /**
      * @param optionList
      * @param respondentList
      */
-    void registerEnquete(Enquete enquete,List<Option> optionList,List<Respondent> respondentList);
+    void registerEnquete(Enquete enquete,List<String> optionList,List<String> respondentList);
 }

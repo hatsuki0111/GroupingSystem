@@ -18,6 +18,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import javax.swing.text.html.Option;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 
 /**
@@ -28,19 +29,19 @@ public class CreateEnquetePage extends TemplatePage {
     private ICreateEnqueteService createEnqueteService;
 
     public CreateEnquetePage() {
-        var accountList = createEnqueteService.getAccountList();
+        var accountList = createEnqueteService.getAccountList().stream().map(Account::getName).collect(Collectors.toList());
         var enqueteModel = new Model<>(new Enquete());
 
         var enqueteForm = new Form<>("enqueteForm");
         add(enqueteForm);
         enqueteForm.add(new TextField<>("enqueteTitle", LambdaModel.of(enqueteModel, Enquete::getTitle, Enquete::setTitle)));
 
-        var selectedAccountModel = Model.ofList(new ArrayList<Account>());
+        var selectedAccountModel = Model.ofList(new ArrayList<String>());
         // 対象者のList
         enqueteForm.add(new CheckBoxMultipleChoice<>("respondentCheckBox",
                 selectedAccountModel,
                 accountList,
-                new ChoiceRenderer<>("name")));
+                new ChoiceRenderer<>()));
 
         enqueteForm.add(new LocalDateTimeField("startDate", LambdaModel.of(enqueteModel, Enquete::getStartDateTime, Enquete::setStartDateTime)));
 
@@ -105,7 +106,7 @@ public class CreateEnquetePage extends TemplatePage {
 //                var respondentList = new ArrayList<Respondent>();
 //                selectedAccountModel.getObject().stream().forEach(l->respondentList.add(new Respondent(0,l.getName()));
 
-//                createEnqueteService.registerEnquete();
+                createEnqueteService.registerEnquete(enqueteModel.getObject(),groupNameListModel.getObject(),selectedAccountModel.getObject());
                 setResponsePage(EnqueteRegistrationCompletionPage.class);
             }
         });
