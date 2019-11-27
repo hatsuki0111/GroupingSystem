@@ -41,6 +41,7 @@ public class CreateEnquetePage extends TemplatePage {
             @Override
             public void onSubmit() {
                 super.onSubmit();
+                // TODO serviceの追加
                 setResponsePage(EnqueteRegistrationCompletionPage.class);
             }
         });
