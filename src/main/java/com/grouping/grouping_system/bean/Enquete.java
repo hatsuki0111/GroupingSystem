@@ -3,7 +3,7 @@ package com.grouping.grouping_system.bean;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.sql.Timestamp;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -11,14 +11,14 @@ import java.time.LocalDateTime;
  */
 @AllArgsConstructor
 @Data
-public class Enquete {
+public class Enquete implements Serializable {
     private long id;
     private String title;
     private String authorAccountName;   // アンケート作成者の名前
-    private Timestamp start;    // 回答受け付け開始時間
-    private Timestamp end;      // 回答受け付け終了時間
+    private LocalDateTime startDateTime;    // 回答受け付け開始時間
+    private LocalDateTime endDateTime;      // 回答受け付け終了時間
 
-    public Enquete(){
-        this(0,"","", Timestamp.valueOf(LocalDateTime.now()), Timestamp.valueOf(LocalDateTime.now()));
+    public Enquete() {
+        this(0, "", "", LocalDateTime.now(), LocalDateTime.now());
     }
 }

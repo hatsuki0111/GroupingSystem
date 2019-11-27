@@ -9,7 +9,11 @@
     <div>
         <form wicket:id="enqueteForm">
             <!-- タイトル入力フォーム -->
-            <input wicket:id="enqueteTitle" type="text"/>
+            <label title="タイトル:"><input wicket:id="enqueteTitle" type="text"/></label>
+            <!-- 回答可能期間(開始) -->
+            <div>開始: <div wicket:id="startDate"></div></div>
+            <!-- 回答可能期間(終了) -->
+            <div>終了: <div wicket:id="endDate"></div></div>
             <!-- 対象者選択チェックボックス -->
             <label wicket:id="respondentCheckBox"></label>
             <!-- TODO:送信ボタンをページ下部に配置する -->
