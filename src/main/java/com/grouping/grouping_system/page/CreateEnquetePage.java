@@ -99,14 +99,13 @@ public class CreateEnquetePage extends TemplatePage {
             @Override
             public void onSubmit() {
                 super.onSubmit();
-                // TODO: EnqueteにuserNameをいれる
-                // TODO: createEnqueteServiceのregisterEnquete()を呼び出す
+                // TODO: EnqueteにuserNameをいれる?
 //                enqueteModel.getObject().setAuthorAccountName(SigningSession.get().getUserName());
                 enqueteModel.getObject().setAuthorAccountName("admin");
 //                var respondentList = new ArrayList<Respondent>();
 //                selectedAccountModel.getObject().stream().forEach(l->respondentList.add(new Respondent(0,l.getName()));
 
-                createEnqueteService.registerEnquete(enqueteModel.getObject(),groupNameListModel.getObject(),selectedAccountModel.getObject());
+                createEnqueteService.registerEnquete(enqueteModel.getObject(), groupNameListModel.getObject(), selectedAccountModel.getObject());
                 setResponsePage(EnqueteRegistrationCompletionPage.class);
             }
         });
