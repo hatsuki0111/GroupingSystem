@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Repository
@@ -34,10 +35,18 @@ public class EnqueteRepository implements IEnqueteRepository {
             PreparedStatement preparedStatement = psc.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1,enquete.getTitle());
             preparedStatement.setString(2,enquete.getAuthorAccountName());
-            preparedStatement.setString(3,enquete.getStartDateTime().toString());
-            preparedStatement.setString(4,enquete.getEndDateTime().toString());
+            preparedStatement.setTimestamp(3, Timestamp.valueOf(enquete.getStartDateTime()));
+            preparedStatement.setTimestamp(4,Timestamp.valueOf(enquete.getEndDateTime()));
             return preparedStatement;
         },keyHolder);
         return (long)keyHolder.getKey();
     }
+
+    @Override
+    public List<Enquete> findBy(String accountName) {
+        var sql = "select * from enquete where AUTHOR_ACCOUNT_NAME = ?";
+        return jdbc.query(sql,new BeanPropertyRowMapper<>(Enquete.class),accountName);
+    }
+
+
 }

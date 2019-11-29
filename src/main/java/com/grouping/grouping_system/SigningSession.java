@@ -9,11 +9,11 @@ import org.apache.wicket.request.Request;
  * サインイン処理に関するセッション
  */
 public class SigningSession extends AbstractAuthenticatedWebSession {
-    private String userName;
+    private String accountName;
 
     public SigningSession(Request request) {
         super(request);
-        userName = null;
+        accountName = null;
     }
 
     @Override
@@ -26,20 +26,20 @@ public class SigningSession extends AbstractAuthenticatedWebSession {
 
     @Override
     public boolean isSignedIn() {
-        return userName != null;
+        return accountName != null;
     }
 
-    public void signIn(String userName) {
+    public void signIn(String accountName) {
         changeSessionId();
-        setUserName(userName);
+        setAccountName(accountName);
     }
 
-    public String getUserName() {
-        return userName;
+    public String getAccountName() {
+        return accountName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
     }
 
 

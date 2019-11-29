@@ -20,4 +20,11 @@ public interface IEnqueteRepository {
      * @return 追加行数
      */
     long insert(Enquete enquete);
+
+    /**
+     *
+     * @param accountName
+     * @return
+     */
+    List<Enquete> findBy(String accountName);
 }

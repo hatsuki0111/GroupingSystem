@@ -14,4 +14,11 @@ public interface IAccountRepository {
      */
     List<Account> find();
 
+    /**
+     *
+     * @param accountName
+     * @return
+     */
+    Account findBy(String accountName);
+
 }

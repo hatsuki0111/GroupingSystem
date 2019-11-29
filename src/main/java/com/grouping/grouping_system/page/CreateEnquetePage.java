@@ -1,5 +1,6 @@
 package com.grouping.grouping_system.page;
 
+import com.grouping.grouping_system.SigningSession;
 import com.grouping.grouping_system.bean.Account;
 import com.grouping.grouping_system.bean.Enquete;
 import com.grouping.grouping_system.bean.Respondent;
@@ -99,12 +100,7 @@ public class CreateEnquetePage extends TemplatePage {
             @Override
             public void onSubmit() {
                 super.onSubmit();
-                // TODO: EnqueteにuserNameをいれる?
-//                enqueteModel.getObject().setAuthorAccountName(SigningSession.get().getUserName());
-                enqueteModel.getObject().setAuthorAccountName("admin");
-//                var respondentList = new ArrayList<Respondent>();
-//                selectedAccountModel.getObject().stream().forEach(l->respondentList.add(new Respondent(0,l.getName()));
-
+                enqueteModel.getObject().setAuthorAccountName(SigningSession.get().getAccountName());
                 createEnqueteService.registerEnquete(enqueteModel.getObject(), groupNameListModel.getObject(), selectedAccountModel.getObject());
                 setResponsePage(EnqueteRegistrationCompletionPage.class);
             }

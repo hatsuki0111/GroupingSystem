@@ -19,4 +19,13 @@ public class AccountRepository implements IAccountRepository {
         return jdbc.query(sql, new BeanPropertyRowMapper<>(Account.class));
     }
 
+    @Override
+    public Account findBy(String accountName) {
+        var sql = "select * from account where name = ?";
+        return jdbc.query(sql,new BeanPropertyRowMapper<>(Account.class),accountName)
+                .stream()
+                .findFirst()
+                .orElseThrow();
+    }
+
 }
