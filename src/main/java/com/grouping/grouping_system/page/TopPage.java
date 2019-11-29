@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.wicketstuff.annotation.mount.MountPath;
 
 import java.lang.reflect.Parameter;
+import java.time.LocalDateTime;
 
 @MountPath("TopPage")
 public class TopPage extends TemplatePage {
@@ -28,10 +29,13 @@ public class TopPage extends TemplatePage {
             @Override
             protected void populateItem(ListItem<Enquete> listItem) {
                 listItem.add(new Link<String>("toAnswerEnquetePage") {
-//                    @Override
-//                    protected void onInitialize() {
-//                        super.onInitialize();
-//                    }
+                    @Override
+                    protected void onInitialize() {
+                        super.onInitialize();
+                        if (!answerEnqueteService.isAnswerable(listItem.getModelObject())) {
+                            setEnabled(false);
+                        }
+                    }
 
                     @Override
                     public void onClick() {

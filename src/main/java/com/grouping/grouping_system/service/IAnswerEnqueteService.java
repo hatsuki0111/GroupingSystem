@@ -11,4 +11,11 @@ public interface IAnswerEnqueteService {
      * @return
      */
     List<Enquete> getAnswerableEnqueteList();
+
+    /**
+     *
+     * @param enquete
+     * @return
+     */
+    boolean isAnswerable(Enquete enquete);
 }
