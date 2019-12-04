@@ -12,15 +12,15 @@
 <body>
 <div wicket:id="menuBar"></div>
 <div class="container">
-    <div><span wicket:id="titleNameLabel"></span></div>
-    <div>
-        <span wicket:id="startTimeLabel"></span>
-        <span wicket:id="endTimeLabel"></span>
+    <div>タイトル: <span wicket:id="titleNameLabel"></span></div>
+    <div class="row">
+        <div class="col-6">開始時間: <span wicket:id="startTimeLabel"></span></div>
+        <div class="col-6">終了時間: <span wicket:id="endTimeLabel"></span></div>
     </div>
     <div>
         <form wicket:id="nantokaForm">
-            <div wicket:id="radioButton"></div>
-            <input type="submit" wicket:id="nantokaButton">
+            <div wicket:id="radioButton" class="form-check"></div>
+            <input type="submit" wicket:id="nantokaButton" class="btn btn-dark">
         </form>
     </div>
 </div>
