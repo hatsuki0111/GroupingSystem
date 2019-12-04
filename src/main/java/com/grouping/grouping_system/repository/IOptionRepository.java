@@ -20,4 +20,11 @@ public interface IOptionRepository {
      * @return
      */
     void insert(List<Option> optionList);
+
+    /**
+     *
+     * @param enqueteId
+     * @return
+     */
+    List<Option> findBy(long enqueteId);
 }

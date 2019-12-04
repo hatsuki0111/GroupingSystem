@@ -30,4 +30,10 @@ public class OptionRepository implements IOptionRepository {
                 jdbc.update(sql, l.getEnqueteId(), l.getLabel(), l.isAuthorized());
             }
     }
+
+    @Override
+    public List<Option> findBy(long enqueteId) {
+        var sql = "select * from option where enquete_id = ?";
+        return jdbc.query(sql,new BeanPropertyRowMapper<>(Option.class),enqueteId);
+    }
 }

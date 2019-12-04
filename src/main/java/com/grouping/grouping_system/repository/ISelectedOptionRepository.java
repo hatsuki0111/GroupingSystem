@@ -7,10 +7,16 @@ import java.util.List;
 /**
  * {@link SelectedOption}のリポジトリ
  */
-public interface ISelectedRepository {
+public interface ISelectedOptionRepository {
     /**
      * 全ての{@link SelectedOption}の{@link List}を返します
      * @return {@link SelectedOption}の{@link List}
      */
     List<SelectedOption> find();
+
+    /**
+     *
+     * @param selectedOption
+     */
+    void insert(SelectedOption selectedOption);
 }

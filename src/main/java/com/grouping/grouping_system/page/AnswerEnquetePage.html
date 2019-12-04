@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:wicket="http://wicket.apache.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <wicket:link>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+              crossorigin="anonymous">
+    </wicket:link>
 </head>
 <body>
-
+<div wicket:id="menuBar"></div>
+<div class="container">
+    <div><span wicket:id="titleNameLabel"></span></div>
+    <div>
+        <span wicket:id="startTimeLabel"></span>
+        <span wicket:id="endTimeLabel"></span>
+    </div>
+    <div>
+        <form wicket:id="nantokaForm">
+            <div wicket:id="radioButton"></div>
+            <input type="submit" wicket:id="nantokaButton">
+        </form>
+    </div>
+</div>
 </body>
 </html>

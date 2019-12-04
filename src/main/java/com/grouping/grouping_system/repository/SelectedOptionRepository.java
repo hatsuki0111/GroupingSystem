@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class SelectedOptionRepository implements ISelectedRepository {
+public class SelectedOptionRepository implements ISelectedOptionRepository {
 
     @Autowired
     private JdbcTemplate jdbc;
@@ -18,5 +18,11 @@ public class SelectedOptionRepository implements ISelectedRepository {
     public List<SelectedOption> find() {
         String sql = "select * from selected_option";
         return jdbc.query(sql, new BeanPropertyRowMapper<>(SelectedOption.class));
+    }
+
+    @Override
+    public void insert(SelectedOption selectedOption) {
+        var sql = "insert into selected_option values(?,?,?)";
+        jdbc.update(sql,selectedOption.getAccountName(),selectedOption.getEnqueteId(),selectedOption.getOptionLabel());
     }
 }

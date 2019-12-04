@@ -3,18 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <wicket:link>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+              crossorigin="anonymous">
+    </wicket:link>
 </head>
 <body>
 <div wicket:id="menuBar"></div>
-<table>
-    <tr>
-        <th>アンケート名</th>
-        <th>作成者</th>
-    </tr>
-    <tr wicket:id="answerableEnqueteListView">
-        <td><a wicket:id="toAnswerEnquetePage" href="#"><span wicket:id="enqueteTitleLabel"></span></a></td>
-        <td><span wicket:id="authorAccountNameLabel"></span></td>
-    </tr>
-</table>
+<div class="container">
+    <div class="pt-4">
+        <h3>あなた宛てのアンケート</h3>
+        <table class="table table-striped table-bordered table-hover">
+            <tr class="thead-dark">
+                <th>アンケート名</th>
+                <th>作成者</th>
+                <th>回答可能期間</th>
+            </tr>
+            <tr wicket:id="answerableEnqueteListView">
+                <td><a wicket:id="toAnswerEnquetePage" href="#"><span wicket:id="enqueteTitleLabel"></span></a></td>
+                <td><span wicket:id="authorAccountNameLabel"></span></td>
+                <td>未実装</td>
+            </tr>
+        </table>
+    </div>
+    <div class="pt-4">
+        <h3>あなたが作成したアンケート</h3>
+        <table class="table table-striped table-bordered table-hover">
+            <tr class="thead-dark">
+                <th>アンケート名</th>
+                <th>回答可能期間</th>
+            </tr>
+            <tr>
+                <td>enqueteTitle</td>
+                <td>answerableTimeSpan</td>
+            </tr>
+        </table>
+    </div>
+</div>
 </body>
 </html>

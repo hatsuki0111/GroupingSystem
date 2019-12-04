@@ -33,6 +33,8 @@ public class CreateEnquetePage extends TemplatePage {
         var accountList = createEnqueteService.getAccountList().stream().map(Account::getName).collect(Collectors.toList());
         var enqueteModel = new Model<>(new Enquete());
 
+        add(new MenuBarPanel("menuBar"));
+
         var enqueteForm = new Form<>("enqueteForm");
         add(enqueteForm);
         enqueteForm.add(new TextField<>("enqueteTitle", LambdaModel.of(enqueteModel, Enquete::getTitle, Enquete::setTitle)));
@@ -50,16 +52,18 @@ public class CreateEnquetePage extends TemplatePage {
 
         var groupNameListModel = Model.ofList(new ArrayList<String>());
 
-        var addGroupForm = new Form("addGroupForm");
-        add(addGroupForm);
+//        var addGroupForm = new Form("addGroupForm");
+//        add(addGroupForm);
 
         var addedGroupNameModel = Model.of("");
         var groupNameField = new TextField<>("groupNameField", addedGroupNameModel);
-        addGroupForm.add(groupNameField);
+//        addGroupForm.add(groupNameField);
+        enqueteForm.add(groupNameField);
 
         var webMarkupContainer = new WebMarkupContainer("addedGroupWMC");
         webMarkupContainer.setOutputMarkupId(true);
-        add(webMarkupContainer);
+//        add(webMarkupContainer);
+        enqueteForm.add(webMarkupContainer);
 
         var addedGroupListView = new ListView<>("addedGroupListView", groupNameListModel) {
             @Override
@@ -93,7 +97,8 @@ public class CreateEnquetePage extends TemplatePage {
                 target.add(webMarkupContainer);
             }
         };
-        addGroupForm.add(addGroupButton);
+//        addGroupForm.add(addGroupButton);
+        enqueteForm.add(addGroupButton);
 
         // 送信ボタン
         enqueteForm.add(new Button("submitButton") {

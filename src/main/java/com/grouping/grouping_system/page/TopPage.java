@@ -39,9 +39,7 @@ public class TopPage extends TemplatePage {
 
                     @Override
                     public void onClick() {
-                        var parameters = new PageParameters();
-                        parameters.set("enqueteId", listItem.getModelObject().getId());
-                        setResponsePage(AnswerEnquetePage.class, parameters);
+                        setResponsePage(new AnswerEnquetePage(listItem.getModel()));
                     }
                 }.add(new Label("enqueteTitleLabel", Model.of(listItem.getModelObject().getTitle()))));
                 listItem.add(new Label("authorAccountNameLabel", listItem.getModelObject().getAuthorAccountName()));
