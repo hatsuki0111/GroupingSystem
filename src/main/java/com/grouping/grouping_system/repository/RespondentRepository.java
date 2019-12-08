@@ -28,5 +28,15 @@ public class RespondentRepository implements IRespondentRepository {
         }
     }
 
+    @Override
+    public List<Respondent> findBy(String accountName){
+        var sql = "select * from RESPONDENT where ACCOUNT_NAME = ?";
+        return jdbc.query(sql,new BeanPropertyRowMapper<>(Respondent.class),accountName);
+    }
 
+    @Override
+    public List<Respondent> findBy(long enqueteId){
+        var sql = "select * from RESPONDENT where ENQUETE_ID = ?";
+        return jdbc.query(sql, new BeanPropertyRowMapper<>(Respondent.class), enqueteId);
+    }
 }

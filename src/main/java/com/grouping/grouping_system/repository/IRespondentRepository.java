@@ -19,4 +19,8 @@ public interface IRespondentRepository {
      * @param respondentList
      */
     void insert(List<Respondent> respondentList);
+
+    List<Respondent> findBy(String accountName);
+
+    List<Respondent> findBy(long enqueteId);
 }

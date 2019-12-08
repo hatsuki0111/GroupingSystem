@@ -26,7 +26,7 @@ public interface IAnswerEnqueteService {
      * @param enqueteId
      * @return
      */
-    List<Option> getOptionListBy(long enqueteId);
+    List<Option> getOptionList(long enqueteId);
 
     /**
      *

@@ -11,6 +11,7 @@ import org.apache.wicket.extensions.markup.html.form.datetime.LocalDateTimeField
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.*;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.LambdaModel;
@@ -26,28 +27,48 @@ import java.util.stream.Collectors;
  * アンケート作成ページ
  */
 public class CreateEnquetePage extends TemplatePage {
+
     @SpringBean
     private ICreateEnqueteService createEnqueteService;
 
     public CreateEnquetePage() {
         var accountList = createEnqueteService.getAccountList().stream().map(Account::getName).collect(Collectors.toList());
         var enqueteModel = new Model<>(new Enquete());
+        var selectedAccountModel = Model.ofList(new ArrayList<String>());
 
         add(new MenuBarPanel("menuBar"));
 
         var enqueteForm = new Form<>("enqueteForm");
         add(enqueteForm);
+
         enqueteForm.add(new TextField<>("enqueteTitle", LambdaModel.of(enqueteModel, Enquete::getTitle, Enquete::setTitle)));
 
-        var selectedAccountModel = Model.ofList(new ArrayList<String>());
-        // 対象者のList
-        enqueteForm.add(new CheckBoxMultipleChoice<>("respondentCheckBox",
+        var respondentCheckBox = new CheckBoxMultipleChoice<>("respondentCheckBox",
                 selectedAccountModel,
                 accountList,
-                new ChoiceRenderer<>()));
+                new ChoiceRenderer<>());
+
+        respondentCheckBox
+                .setPrefix("<li>")
+                .setSuffix("</li>");
+
+        enqueteForm.add(respondentCheckBox);
+
+        enqueteForm.add(new Link<>("selectAllLink"){
+            @Override
+            public void onClick() {
+                selectedAccountModel.setObject(accountList);
+            }
+        });
+
+        enqueteForm.add(new Link<>("deselectAllLink"){
+            @Override
+            public void onClick() {
+                selectedAccountModel.setObject(new ArrayList<>());
+            }
+        });
 
         enqueteForm.add(new LocalDateTimeField("startDate", LambdaModel.of(enqueteModel, Enquete::getStartDateTime, Enquete::setStartDateTime)));
-
         enqueteForm.add(new LocalDateTimeField("endDate", LambdaModel.of(enqueteModel, Enquete::getEndDateTime, Enquete::setEndDateTime)));
 
         var groupNameListModel = Model.ofList(new ArrayList<String>());

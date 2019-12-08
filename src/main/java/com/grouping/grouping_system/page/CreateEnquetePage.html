@@ -27,31 +27,42 @@
                     <div wicket:id="endDate"></div>
                 </div>
             </div>
+
             <!-- 対象者選択チェックボックス -->
-            <div class="form-group">
-                <label wicket:id="respondentCheckBox"></label>
+            <div class="">
+                <ul>
+                    <span wicket:id="respondentCheckBox"></span>
+                </ul>
             </div>
+
+            <!-- 対象者全選択ボタン -->
+            <div>
+                <a wicket:id="selectAllLink">全て選択</a>
+                <a wicket:id="deselectAllLink">全て解除</a>
+            </div>
+
+            <!-- グループ追加フォーム -->
             <div>
                 <input wicket:id="groupNameField" type="text" class="form-group" placeholder="グループ名を入力してください">
                 <input wicket:id="addGroupButton" type="submit" class="btn btn-dark" value="追加">
             </div>
-            <div>
-                <!-- 追加されたグループ一覧 -->
-                <div wicket:id="addedGroupWMC">
-                    <wicket:container wicket:id="addedGroupListView">
-                        <form wicket:id="addedGroupForm">
-                            <div class="row">
-                                <div class="col-8">
-                                    <span wicket:id="groupNameLabel"></span>
-                                </div>
-                                <div class="col-4">
-                                    <input wicket:id="deleteGroupButton" type="submit" class="btn btn-dark" value="削除">
-                                </div>
+
+            <!-- 追加されたグループ一覧 -->
+            <div wicket:id="addedGroupWMC">
+                <wicket:container wicket:id="addedGroupListView">
+                    <form wicket:id="addedGroupForm">
+                        <div class="row">
+                            <div class="col-8">
+                                <span wicket:id="groupNameLabel"></span>
                             </div>
-                        </form>
-                    </wicket:container>
-                </div>
+                            <div class="col-4">
+                                <input wicket:id="deleteGroupButton" type="submit" class="btn btn-dark" value="削除">
+                            </div>
+                        </div>
+                    </form>
+                </wicket:container>
             </div>
+
 
             <!-- TODO:送信ボタンをページ下部に配置する -->
             <div class="form-group pt-4">

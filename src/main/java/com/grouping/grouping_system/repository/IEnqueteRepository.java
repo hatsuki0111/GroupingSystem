@@ -1,6 +1,7 @@
 package com.grouping.grouping_system.repository;
 
 import com.grouping.grouping_system.bean.Enquete;
+import com.grouping.grouping_system.bean.Respondent;
 
 import java.util.List;
 
@@ -27,4 +28,6 @@ public interface IEnqueteRepository {
      * @return
      */
     List<Enquete> findBy(String accountName);
+
+    List<Enquete> findBy(List<Respondent> respondentList);
 }

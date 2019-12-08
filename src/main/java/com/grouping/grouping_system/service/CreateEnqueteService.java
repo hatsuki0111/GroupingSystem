@@ -13,6 +13,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,14 +39,15 @@ public class CreateEnqueteService implements ICreateEnqueteService {
     @Transactional
     @Override
     public void registerEnquete(Enquete enquete, List<String> optionList, List<String> respondentList) {
-        long enqueteId = enqueteRepository.insert(enquete);
-        List<Option> options = new ArrayList<>();
-        for (String label : optionList){
+        enquete.setPostedDateTime(LocalDateTime.now());
+        var enqueteId = enqueteRepository.insert(enquete);
+        var options = new ArrayList<Option>();
+        for (var label : optionList){
             options.add(new Option(enqueteId,label,true));
         }
         optionRepository.insert(options);
-        List<Respondent> respondents = new ArrayList<>();
-        for (String name : respondentList){
+        var respondents = new ArrayList<Respondent>();
+        for (var name : respondentList){
             respondents.add(new Respondent(enqueteId,name));
         }
         respondentRepository.insert(respondents);

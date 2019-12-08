@@ -6,6 +6,7 @@ import com.grouping.grouping_system.bean.Option;
 import com.grouping.grouping_system.bean.SelectedOption;
 import com.grouping.grouping_system.repository.IEnqueteRepository;
 import com.grouping.grouping_system.repository.IOptionRepository;
+import com.grouping.grouping_system.repository.IRespondentRepository;
 import com.grouping.grouping_system.repository.ISelectedOptionRepository;
 import org.apache.wicket.Session;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -28,9 +29,12 @@ public class AnswerEnqueteService implements IAnswerEnqueteService {
     @Autowired
     private ISelectedOptionRepository selectedOptionRepository;
 
+    @Autowired
+    private IRespondentRepository respondentRepository;
+
     @Override
     public List<Enquete> getAnswerableEnqueteList() {
-        return enqueteRepository.findBy(SigningSession.get().getAccountName());
+        return enqueteRepository.findBy(respondentRepository.findBy(SigningSession.get().getAccountName()));
     }
 
     @Override
@@ -39,7 +43,7 @@ public class AnswerEnqueteService implements IAnswerEnqueteService {
     }
 
     @Override
-    public List<Option> getOptionListBy(long enqueteId) {
+    public List<Option> getOptionList(long enqueteId) {
         return optionRepository.findBy(enqueteId);
     }
 

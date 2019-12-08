@@ -20,12 +20,14 @@
                 <th>作成者</th>
                 <th>回答可能期間</th>
                 <th>投稿日時</th>
+                <th></th>
             </tr>
             <tr wicket:id="answerableEnqueteListView">
                 <td><a wicket:id="toAnswerEnquetePage" href="#"><span wicket:id="enqueteTitleLabel"></span></a></td>
                 <td><span wicket:id="authorAccountNameLabel"></span></td>
-                <td>yyyy-MM-dd ~ yyyy-MM-dd(未実装)</td>
-                <td>yyyy-MM-dd(未実装)</td>
+                <td><span wicket:id="startDateTimeLabel"></span> ~ <span wicket:id="endDateTimeLabel"></span></td>
+                <td><span wicket:id="postedDateTimeLabel"></span></td>
+                <td><a wicket:id="toViewResultPage">結果</a></td>
             </tr>
         </table>
     </div>
@@ -36,11 +38,13 @@
                 <th>アンケート名</th>
                 <th>回答可能期間</th>
                 <th>投稿日時</th>
+                <th></th>
             </tr>
-            <tr>
-                <td>enqueteTitle</td>
-                <td>answerableTimeSpan</td>
-                <td>postedAt</td>
+            <tr wicket:id="editableEnqueteListView">
+                <td><a wicket:id="toEditEnquetePage"><span wicket:id="enqueteTitleLabel"></span></a></td>
+                <td><span wicket:id="startDateTimeLabel"></span> ~ <span wicket:id="endDateTimeLabel"></span></td>
+                <td><span wicket:id="postedDateTimeLabel"></span></td>
+                <td><a wicket:id="toViewResultPage">結果</a></td>
             </tr>
         </table>
     </div>

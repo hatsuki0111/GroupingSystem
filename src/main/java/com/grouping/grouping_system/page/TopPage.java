@@ -1,26 +1,24 @@
 package com.grouping.grouping_system.page;
 
-import com.giffing.wicket.spring.boot.context.scan.WicketHomePage;
 import com.grouping.grouping_system.bean.Enquete;
 import com.grouping.grouping_system.service.IAnswerEnqueteService;
+import com.grouping.grouping_system.service.IEditEnqueteService;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.wicketstuff.annotation.mount.MountPath;
-
-import java.lang.reflect.Parameter;
-import java.time.LocalDateTime;
 
 @MountPath("TopPage")
 public class TopPage extends TemplatePage {
 
     @SpringBean
     private IAnswerEnqueteService answerEnqueteService;
+
+    @SpringBean
+    private IEditEnqueteService editEnqueteService;
 
     public TopPage() {
         add(new MenuBarPanel("menuBar"));
@@ -43,6 +41,36 @@ public class TopPage extends TemplatePage {
                     }
                 }.add(new Label("enqueteTitleLabel", Model.of(listItem.getModelObject().getTitle()))));
                 listItem.add(new Label("authorAccountNameLabel", listItem.getModelObject().getAuthorAccountName()));
+                listItem.add(new Label("startDateTimeLabel",listItem.getModelObject().getStartDateTime()));
+                listItem.add(new Label("endDateTimeLabel",listItem.getModelObject().getEndDateTime()));
+                listItem.add(new Label("postedDateTimeLabel",listItem.getModelObject().getPostedDateTime()));
+                listItem.add(new Link<>("toViewResultPage") {
+                    @Override
+                    public void onClick() {
+                        setResponsePage(new ViewResultPage(listItem.getModel()));
+                    }
+                });
+            }
+        });
+
+        add(new ListView<>("editableEnqueteListView",Model.ofList(editEnqueteService.getEditableEnqueteList())) {
+            @Override
+            protected void populateItem(ListItem<Enquete> listItem) {
+                listItem.add(new Link<String>("toEditEnquetePage") {
+                    @Override
+                    public void onClick() {
+                        setResponsePage(new EditEnquetePage(listItem.getModel()));
+                    }
+                }.add(new Label("enqueteTitleLabel", Model.of(listItem.getModelObject().getTitle()))));
+                listItem.add(new Label("startDateTimeLabel",listItem.getModelObject().getStartDateTime()));
+                listItem.add(new Label("endDateTimeLabel",listItem.getModelObject().getEndDateTime()));
+                listItem.add(new Label("postedDateTimeLabel",listItem.getModelObject().getPostedDateTime()));
+                listItem.add(new Link<>("toViewResultPage") {
+                    @Override
+                    public void onClick() {
+                        setResponsePage(new ViewResultPage(listItem.getModel()));
+                    }
+                });
             }
         });
     }

@@ -5,14 +5,10 @@ import com.grouping.grouping_system.bean.Option;
 import com.grouping.grouping_system.service.AnswerEnqueteService;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.*;
-import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class AnswerEnquetePage extends TemplatePage {
@@ -28,7 +24,7 @@ public class AnswerEnquetePage extends TemplatePage {
 
         add(new MenuBarPanel("menuBar"));
 
-        var optionListModel = Model.ofList(answerEnqueteService.getOptionListBy(enquete.getId()));
+        var optionListModel = Model.ofList(answerEnqueteService.getOptionList(enquete.getId()));
 
         var selectedOptionModel = Model.of("");
         var optionList = optionListModel.getObject().stream()

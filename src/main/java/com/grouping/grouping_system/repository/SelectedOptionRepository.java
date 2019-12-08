@@ -1,5 +1,6 @@
 package com.grouping.grouping_system.repository;
 
+import com.grouping.grouping_system.bean.Option;
 import com.grouping.grouping_system.bean.SelectedOption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -24,5 +25,12 @@ public class SelectedOptionRepository implements ISelectedOptionRepository {
     public void insert(SelectedOption selectedOption) {
         var sql = "insert into selected_option values(?,?,?)";
         jdbc.update(sql,selectedOption.getAccountName(),selectedOption.getEnqueteId(),selectedOption.getOptionLabel());
+    }
+
+
+    @Override
+    public List<SelectedOption> findBy(Option option, long enqueteId){
+        var sql = "select * from SELECTED_OPTION where OPTION_LABEL = ? and ENQUETE_ID = ?";
+        return jdbc.query(sql,new BeanPropertyRowMapper<>(SelectedOption.class),option.getLabel(),enqueteId);
     }
 }

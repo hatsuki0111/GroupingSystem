@@ -1,5 +1,6 @@
 package com.grouping.grouping_system.repository;
 
+import com.grouping.grouping_system.bean.Option;
 import com.grouping.grouping_system.bean.SelectedOption;
 
 import java.util.List;
@@ -19,4 +20,6 @@ public interface ISelectedOptionRepository {
      * @param selectedOption
      */
     void insert(SelectedOption selectedOption);
+
+    List<SelectedOption> findBy(Option option, long enqueteId);
 }
