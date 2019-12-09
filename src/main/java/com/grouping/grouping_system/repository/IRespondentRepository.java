@@ -23,4 +23,6 @@ public interface IRespondentRepository {
     List<Respondent> findBy(String accountName);
 
     List<Respondent> findBy(long enqueteId);
+
+    void delete(long enqueteId);
 }

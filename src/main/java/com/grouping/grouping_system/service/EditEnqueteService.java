@@ -1,17 +1,12 @@
 package com.grouping.grouping_system.service;
 
 import com.grouping.grouping_system.SigningSession;
-import com.grouping.grouping_system.bean.Account;
-import com.grouping.grouping_system.bean.Enquete;
-import com.grouping.grouping_system.bean.Option;
-import com.grouping.grouping_system.bean.Respondent;
-import com.grouping.grouping_system.repository.IAccountRepository;
-import com.grouping.grouping_system.repository.IEnqueteRepository;
-import com.grouping.grouping_system.repository.IOptionRepository;
-import com.grouping.grouping_system.repository.IRespondentRepository;
+import com.grouping.grouping_system.bean.*;
+import com.grouping.grouping_system.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,6 +23,9 @@ public class EditEnqueteService implements IEditEnqueteService {
 
     @Autowired
     private IOptionRepository optionRepository;
+
+    @Autowired
+    private ISelectedOptionRepository selectedOptionRepository;
 
     @Override
     public List<Enquete> getEditableEnqueteList(){
@@ -47,5 +45,23 @@ public class EditEnqueteService implements IEditEnqueteService {
     @Override
     public List<Option> getOptionList(Enquete enquete){
         return optionRepository.findBy(enquete.getId());
+    }
+
+    @Override
+    public void editEnquete(Enquete enquete, List<String> respondentList, List<String> optionList){
+        enqueteRepository.update(enquete);
+        respondentRepository.delete(enquete.getId());
+        var respondents = new ArrayList<Respondent>();
+        for (var name : respondentList){
+            respondents.add(new Respondent(enquete.getId(),name));
+        }
+        respondentRepository.insert(respondents);
+        optionRepository.delete(enquete.getId());
+        var options = new ArrayList<Option>();
+        for (var o : optionList){
+            options.add(new Option(enquete.getId(),o,true));
+        }
+        optionRepository.insert(options);
+        selectedOptionRepository.delete(enquete.getId());
     }
 }

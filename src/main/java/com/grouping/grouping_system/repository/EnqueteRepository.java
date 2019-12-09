@@ -66,5 +66,11 @@ public class EnqueteRepository implements IEnqueteRepository {
         return enqueteList;
     }
 
+    @Override
+    public void update(Enquete enquete){
+        var sql = "update ENQUETE set TITLE = ?,AUTHOR_ACCOUNT_NAME = ?, START_DATE_TIME = ?,END_DATE_TIME = ? where ID = ?";
+        jdbc.update(sql,enquete.getTitle(),enquete.getAuthorAccountName(),enquete.getStartDateTime(),enquete.getEndDateTime(),enquete.getId());
+    }
+
 
 }

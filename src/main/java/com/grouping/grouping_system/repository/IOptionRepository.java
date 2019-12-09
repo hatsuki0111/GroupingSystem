@@ -27,4 +27,6 @@ public interface IOptionRepository {
      * @return
      */
     List<Option> findBy(long enqueteId);
+
+    void delete(long enqueteId);
 }

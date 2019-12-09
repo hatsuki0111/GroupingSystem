@@ -36,4 +36,10 @@ public class OptionRepository implements IOptionRepository {
         var sql = "select * from option where enquete_id = ?";
         return jdbc.query(sql,new BeanPropertyRowMapper<>(Option.class),enqueteId);
     }
+
+    @Override
+    public void delete(long enqueteId){
+        var sql = "delete from OPTION where ENQUETE_ID = ?";
+        jdbc.update(sql,enqueteId);
+    }
 }

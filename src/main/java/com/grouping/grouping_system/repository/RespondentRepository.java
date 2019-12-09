@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * 回答可能な人のList
+ */
 @Repository
 public class RespondentRepository implements IRespondentRepository {
 
@@ -39,4 +42,11 @@ public class RespondentRepository implements IRespondentRepository {
         var sql = "select * from RESPONDENT where ENQUETE_ID = ?";
         return jdbc.query(sql, new BeanPropertyRowMapper<>(Respondent.class), enqueteId);
     }
+
+    @Override
+    public void delete(long enqueteId){
+        var sql = "delete from RESPONDENT where ENQUETE_ID = ?";
+        jdbc.update(sql,enqueteId);
+    }
+
 }

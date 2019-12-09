@@ -44,7 +44,7 @@ public class EditEnquetePage extends TemplatePage {
 
         add(new MenuBarPanel("menuBar"));
 
-        var addedGroupMVC = new WebMarkupContainer("addedGroupMVC") {
+        var addedGroupWMC = new WebMarkupContainer("addedGroupWMC") {
             @Override
             protected void onInitialize() {
                 super.onInitialize();
@@ -52,7 +52,7 @@ public class EditEnquetePage extends TemplatePage {
             }
         };
 
-        addedGroupMVC
+        addedGroupWMC
                 .add(new ListView<>("addedGroupNameListView", groupNameListModel) {
                     @Override
                     protected void populateItem(ListItem<String> listItem) {
@@ -69,7 +69,7 @@ public class EditEnquetePage extends TemplatePage {
                             protected void onSubmit(AjaxRequestTarget target) {
                                 super.onSubmit(target);
                                 groupNameListModel.getObject().remove(listItem.getModelObject());
-                                target.add(addedGroupMVC);
+                                target.add(addedGroupWMC);
                             }
                         });
                         listItem.add(addedGroupForm);
@@ -81,24 +81,26 @@ public class EditEnquetePage extends TemplatePage {
 
         enqueteForm
                 .add(new TextField<>("titleField", LambdaModel.of(enqueteModel, Enquete::getTitle, Enquete::setTitle)))
-//                .add(new Label("authorAccountNameLabel", enqueteModel.getObject().getAuthorAccountName()))
+                .add(new Label("authAccountNameLabel", enqueteModel.getObject().getAuthorAccountName()))
                 .add(new LocalDateTimeField("startDateTimeField", LambdaModel.of(enqueteModel, Enquete::getStartDateTime, Enquete::setEndDateTime)))
                 .add(new LocalDateTimeField("endDateTimeField", LambdaModel.of(enqueteModel, Enquete::getEndDateTime, Enquete::setEndDateTime)))
                 .add(new CheckBoxMultipleChoice<>("respondentCheckBox", selectedAccountNameListModel, accountList))
                 .add(new TextField<>("groupNameField", groupNameModel))
-                .add(addedGroupMVC)
+                .add(addedGroupWMC)
                 .add(new AjaxButton("addGroupButton") {
                     @Override
                     protected void onSubmit(AjaxRequestTarget target) {
                         super.onSubmit(target);
                         groupNameListModel.getObject().add(groupNameModel.getObject());
-                        target.add(addedGroupMVC);
+                        target.add(addedGroupWMC);
                     }
                 })
                 .add(new Button("submitButton") {
                     @Override
                     public void onSubmit() {
                         super.onSubmit();
+                        editEnqueteService.editEnquete(enqueteModel.getObject(),selectedAccountNameListModel.getObject(),groupNameListModel.getObject());
+                        setResponsePage(EnqueteRegistrationCompletionPage.class);
                     }
                 });
     }

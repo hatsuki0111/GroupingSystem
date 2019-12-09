@@ -29,5 +29,16 @@ public interface IEnqueteRepository {
      */
     List<Enquete> findBy(String accountName);
 
+    /**
+     *
+     * @param respondentList
+     * @return
+     */
     List<Enquete> findBy(List<Respondent> respondentList);
+
+    /**
+     *
+     * @param enquete
+     */
+    void update(Enquete enquete);
 }

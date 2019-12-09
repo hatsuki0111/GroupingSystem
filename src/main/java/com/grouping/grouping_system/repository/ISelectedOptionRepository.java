@@ -22,4 +22,6 @@ public interface ISelectedOptionRepository {
     void insert(SelectedOption selectedOption);
 
     List<SelectedOption> findBy(Option option, long enqueteId);
+
+    void delete(long enqueteId);
 }

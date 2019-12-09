@@ -33,4 +33,10 @@ public class SelectedOptionRepository implements ISelectedOptionRepository {
         var sql = "select * from SELECTED_OPTION where OPTION_LABEL = ? and ENQUETE_ID = ?";
         return jdbc.query(sql,new BeanPropertyRowMapper<>(SelectedOption.class),option.getLabel(),enqueteId);
     }
+
+    @Override
+    public void delete(long enqueteId){
+        var sql = "delete from SELECTED_OPTION where ENQUETE_ID = ?";
+        jdbc.update(sql,enqueteId);
+    }
 }
