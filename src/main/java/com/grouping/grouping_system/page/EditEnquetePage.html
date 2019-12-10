@@ -3,26 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <wicket:link>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+              crossorigin="anonymous">
+    </wicket:link>
 </head>
 <body>
 <div wicket:id="menuBar"></div>
-<div>
+<div class="container">
     <form wicket:id="enqueteForm">
-        <input type="text" wicket:id="titleField"/>
-        <span wicket:id="authAccountNameLabel"></span>
+        <div class="row">
+            <div class="col-9">
+                <input type="text" wicket:id="titleField" class="form-control" placeholder="タイトルを入力してください"/>
+            </div>
+            <div class="col-3">
+                <span wicket:id="authAccountNameLabel"></span>
+            </div>
+        </div>
 
-        <div>
-            <div>開始: <div wicket:id="startDateTimeField"></div></div>
-            <div>終了: <div wicket:id="endDateTimeField"></div></div>
+        <div class="row">
+            <div class="col">開始: <div wicket:id="startDateTimeField"></div></div>
+            <div class="col">終了: <div wicket:id="endDateTimeField"></div></div>
         </div>
 
         <div>
-            <ul>
+            <ul class="list-unstyled">
                 <span wicket:id="respondentCheckBox"></span>
             </ul>
         </div>
-        <div>
-            <input wicket:id="groupNameField" type="text" class="form-group" placeholder="グループ名を入力してください">
+        <div class="form-inline">
+            <input wicket:id="groupNameField" type="text" class="form-control" placeholder="グループ名を入力してください">
             <input wicket:id="addGroupButton" type="submit" class="btn btn-dark" value="追加">
         </div>
 

@@ -84,7 +84,14 @@ public class EditEnquetePage extends TemplatePage {
                 .add(new Label("authAccountNameLabel", enqueteModel.getObject().getAuthorAccountName()))
                 .add(new LocalDateTimeField("startDateTimeField", LambdaModel.of(enqueteModel, Enquete::getStartDateTime, Enquete::setEndDateTime)))
                 .add(new LocalDateTimeField("endDateTimeField", LambdaModel.of(enqueteModel, Enquete::getEndDateTime, Enquete::setEndDateTime)))
-                .add(new CheckBoxMultipleChoice<>("respondentCheckBox", selectedAccountNameListModel, accountList))
+                .add(new CheckBoxMultipleChoice<>("respondentCheckBox", selectedAccountNameListModel, accountList) {
+                    @Override
+                    protected void onInitialize() {
+                        super.onInitialize();
+                        setPrefix("<li>");
+                        setSuffix("</li>");
+                    }
+                })
                 .add(new TextField<>("groupNameField", groupNameModel))
                 .add(addedGroupWMC)
                 .add(new AjaxButton("addGroupButton") {
@@ -99,7 +106,7 @@ public class EditEnquetePage extends TemplatePage {
                     @Override
                     public void onSubmit() {
                         super.onSubmit();
-                        editEnqueteService.editEnquete(enqueteModel.getObject(),selectedAccountNameListModel.getObject(),groupNameListModel.getObject());
+                        editEnqueteService.editEnquete(enqueteModel.getObject(), selectedAccountNameListModel.getObject(), groupNameListModel.getObject());
                         setResponsePage(EnqueteRegistrationCompletionPage.class);
                     }
                 });

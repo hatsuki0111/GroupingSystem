@@ -17,6 +17,7 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.LambdaModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.apache.wicket.validation.validator.StringValidator;
 
 import javax.swing.text.html.Option;
 import java.util.ArrayList;
@@ -32,7 +33,9 @@ public class CreateEnquetePage extends TemplatePage {
     private ICreateEnqueteService createEnqueteService;
 
     public CreateEnquetePage() {
-        var accountList = createEnqueteService.getAccountList().stream().map(Account::getName).collect(Collectors.toList());
+        var accountList = createEnqueteService.getAccountList().stream()
+                .map(Account::getName)
+                .collect(Collectors.toList());
         var enqueteModel = new Model<>(new Enquete());
         var selectedAccountModel = Model.ofList(new ArrayList<String>());
 
@@ -78,7 +81,6 @@ public class CreateEnquetePage extends TemplatePage {
 
         var addedGroupNameModel = Model.of("");
         var groupNameField = new TextField<>("groupNameField", addedGroupNameModel);
-//        addGroupForm.add(groupNameField);
         enqueteForm.add(groupNameField);
 
         var webMarkupContainer = new WebMarkupContainer("addedGroupWMC");
