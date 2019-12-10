@@ -20,9 +20,11 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LambdaModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.wicketstuff.annotation.mount.MountPath;
 
 import java.util.stream.Collectors;
 
+@MountPath("EditEnquete")
 public class EditEnquetePage extends TemplatePage {
 
     @SpringBean
@@ -40,9 +42,6 @@ public class EditEnquetePage extends TemplatePage {
                 .collect(Collectors.toList()));
         var accountList = editEnqueteService.getAccountList().stream().map(Account::getName).collect(Collectors.toList());
         var groupNameModel = Model.of("");
-
-
-        add(new MenuBarPanel("menuBar"));
 
         var addedGroupWMC = new WebMarkupContainer("addedGroupWMC") {
             @Override
@@ -81,7 +80,7 @@ public class EditEnquetePage extends TemplatePage {
 
         enqueteForm
                 .add(new TextField<>("titleField", LambdaModel.of(enqueteModel, Enquete::getTitle, Enquete::setTitle)))
-                .add(new Label("authAccountNameLabel", enqueteModel.getObject().getAuthorAccountName()))
+//                .add(new Label("authAccountNameLabel", enqueteModel.getObject().getAuthorAccountName()))
                 .add(new LocalDateTimeField("startDateTimeField", LambdaModel.of(enqueteModel, Enquete::getStartDateTime, Enquete::setEndDateTime)))
                 .add(new LocalDateTimeField("endDateTimeField", LambdaModel.of(enqueteModel, Enquete::getEndDateTime, Enquete::setEndDateTime)))
                 .add(new CheckBoxMultipleChoice<>("respondentCheckBox", selectedAccountNameListModel, accountList) {

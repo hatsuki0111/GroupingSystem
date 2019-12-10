@@ -9,26 +9,33 @@
               crossorigin="anonymous">
     </wicket:link>
 </head>
-<body>
-<div class="text-center">
-    <span class="display-4">GroupingSystem</span>
-</div>
+<body class="min-vh-100">
 <div class="container">
-    <form wicket:id="signInForm">
-        <div class="row pt-4">
-            <div class="col-4 offset-4">
-                <input wicket:id="accountNameTextField" type="text" class="form-control" placeholder="アカウント名を入力してください"/>
+    <div class="row vh-100">
+        <div class="col-12 align-self-center">
+            <div class="text-center">
+                <span class="display-4">GroupingSystem</span>
             </div>
+            <form wicket:id="signInForm">
+                <div class="row pt-5">
+                    <div class="col-4 offset-4">
+                        <input wicket:id="accountNameTextField" type="text" class="form-control"
+                               placeholder="アカウント名を入力してください"/>
+                    </div>
+                </div>
+                <div class="row pt-4">
+                    <div class="col-4 offset-4">
+                        <input wicket:id="passwordTextField" type="password" class="form-control"
+                               placeholder="パスワードを入力してください"/>
+                    </div>
+                </div>
+                <div class="text-center pt-4">
+                    <button wicket:id="signInButton" type="submit" class="btn btn-outline-secondary">サインイン</button>
+                </div>
+            </form>
         </div>
-        <div class="row pt-4">
-            <div class="col-4 offset-4">
-                <input wicket:id="passwordTextField" type="password" class="form-control" placeholder="パスワードを入力してください"/>
-            </div>
-        </div>
-        <div class="text-center pt-4">
-            <button wicket:id="signInButton" type="submit" class="btn btn-outline-secondary">サインイン</button>
-        </div>
-    </form>
+    </div>
 </div>
+<div wicket:id="footer"></div>
 </body>
 </html>

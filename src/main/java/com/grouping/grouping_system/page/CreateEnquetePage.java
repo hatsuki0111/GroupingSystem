@@ -3,7 +3,6 @@ package com.grouping.grouping_system.page;
 import com.grouping.grouping_system.SigningSession;
 import com.grouping.grouping_system.bean.Account;
 import com.grouping.grouping_system.bean.Enquete;
-import com.grouping.grouping_system.bean.Respondent;
 import com.grouping.grouping_system.service.ICreateEnqueteService;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
@@ -17,9 +16,8 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.LambdaModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.apache.wicket.validation.validator.StringValidator;
+import org.wicketstuff.annotation.mount.MountPath;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
@@ -27,6 +25,7 @@ import java.util.stream.Collectors;
 /**
  * アンケート作成ページ
  */
+@MountPath("CreateEnquete")
 public class CreateEnquetePage extends TemplatePage {
 
     @SpringBean
@@ -38,8 +37,6 @@ public class CreateEnquetePage extends TemplatePage {
                 .collect(Collectors.toList());
         var enqueteModel = new Model<>(new Enquete());
         var selectedAccountModel = Model.ofList(new ArrayList<String>());
-
-        add(new MenuBarPanel("menuBar"));
 
         var enqueteForm = new Form<>("enqueteForm");
         add(enqueteForm);
@@ -57,14 +54,14 @@ public class CreateEnquetePage extends TemplatePage {
 
         enqueteForm.add(respondentCheckBox);
 
-        enqueteForm.add(new Link<>("selectAllLink"){
+        enqueteForm.add(new Link<>("selectAllLink") {
             @Override
             public void onClick() {
                 selectedAccountModel.setObject(accountList);
             }
         });
 
-        enqueteForm.add(new Link<>("deselectAllLink"){
+        enqueteForm.add(new Link<>("deselectAllLink") {
             @Override
             public void onClick() {
                 selectedAccountModel.setObject(new ArrayList<>());

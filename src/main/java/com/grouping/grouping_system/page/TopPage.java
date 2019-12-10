@@ -11,7 +11,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.wicketstuff.annotation.mount.MountPath;
 
-@MountPath("TopPage")
+@MountPath("Top")
 public class TopPage extends TemplatePage {
 
     @SpringBean
@@ -21,8 +21,6 @@ public class TopPage extends TemplatePage {
     private IEditEnqueteService editEnqueteService;
 
     public TopPage() {
-        add(new MenuBarPanel("menuBar"));
-
         add(new ListView<>("answerableEnqueteListView", Model.ofList(answerEnqueteService.getAnswerableEnqueteList())) {
             @Override
             protected void populateItem(ListItem<Enquete> listItem) {

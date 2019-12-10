@@ -1,7 +1,6 @@
 package com.grouping.grouping_system.page;
 
 import com.grouping.grouping_system.SigningSession;
-import org.apache.wicket.Session;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 

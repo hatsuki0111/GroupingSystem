@@ -10,7 +10,9 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.wicketstuff.annotation.mount.MountPath;
 
+@MountPath("ViewResult")
 public class ViewResultPage extends TemplatePage {
 
     @SpringBean
@@ -20,7 +22,7 @@ public class ViewResultPage extends TemplatePage {
     private IViewResultService viewResultService;
 
     public ViewResultPage(IModel<Enquete> enqueteModel){
-        add(new MenuBarPanel("menuBar"));
+//        add(new MenuBarPanel("menuBar"));
         add(new Label("titleLabel",enqueteModel.getObject().getTitle()));
         add(new Label("authorAccountNameLabel",enqueteModel.getObject().getAuthorAccountName()));
         add(new ListView<>("optionListView",viewResultService.getOptionList(enqueteModel.getObject())) {

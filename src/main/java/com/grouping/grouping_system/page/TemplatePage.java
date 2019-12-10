@@ -7,6 +7,7 @@ import org.apache.wicket.markup.html.WebPage;
  */
 public class TemplatePage extends WebPage {
     TemplatePage() {
-
+        add(new MenuBarPanel("menuBar"));
+        add(new FooterPanel("footer"));
     }
 }

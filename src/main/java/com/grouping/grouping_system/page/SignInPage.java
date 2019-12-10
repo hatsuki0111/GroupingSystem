@@ -20,6 +20,7 @@ public class SignInPage extends WebPage {
     private ISignService signService;
 
     public SignInPage(){
+        add(new FooterPanel("footer"));
         var signInForm = new Form("signInForm");
         add(signInForm);
 

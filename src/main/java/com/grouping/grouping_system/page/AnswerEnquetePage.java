@@ -8,9 +8,11 @@ import org.apache.wicket.markup.html.form.*;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.wicketstuff.annotation.mount.MountPath;
 
 import java.util.stream.Collectors;
 
+@MountPath("AnswerEnquete")
 public class AnswerEnquetePage extends TemplatePage {
 
     @SpringBean
@@ -21,8 +23,6 @@ public class AnswerEnquetePage extends TemplatePage {
         add(new Label("titleNameLabel", enquete.getTitle()));
         add(new Label("startTimeLabel", enquete.getStartDateTime()));
         add(new Label("endTimeLabel", enquete.getEndDateTime()));
-
-        add(new MenuBarPanel("menuBar"));
 
         var optionListModel = Model.ofList(answerEnqueteService.getOptionList(enquete.getId()));
 
