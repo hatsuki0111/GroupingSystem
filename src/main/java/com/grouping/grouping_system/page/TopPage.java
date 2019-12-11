@@ -39,9 +39,9 @@ public class TopPage extends TemplatePage {
                     }
                 }.add(new Label("enqueteTitleLabel", Model.of(listItem.getModelObject().getTitle()))));
                 listItem.add(new Label("authorAccountNameLabel", listItem.getModelObject().getAuthorAccountName()));
-                listItem.add(new Label("startDateTimeLabel",listItem.getModelObject().getStartDateTime()));
-                listItem.add(new Label("endDateTimeLabel",listItem.getModelObject().getEndDateTime()));
-                listItem.add(new Label("postedDateTimeLabel",listItem.getModelObject().getPostedDateTime()));
+                listItem.add(new Label("startDateTimeLabel", listItem.getModelObject().getStartDateTime()));
+                listItem.add(new Label("endDateTimeLabel", listItem.getModelObject().getEndDateTime()));
+                listItem.add(new Label("postedDateTimeLabel", listItem.getModelObject().getPostedDateTime()));
                 listItem.add(new Link<>("toViewResultPage") {
                     @Override
                     public void onClick() {
@@ -51,7 +51,7 @@ public class TopPage extends TemplatePage {
             }
         });
 
-        add(new ListView<>("editableEnqueteListView",Model.ofList(editEnqueteService.getEditableEnqueteList())) {
+        add(new ListView<>("editableEnqueteListView", Model.ofList(editEnqueteService.getEditableEnqueteList())) {
             @Override
             protected void populateItem(ListItem<Enquete> listItem) {
                 listItem.add(new Link<String>("toEditEnquetePage") {
@@ -60,9 +60,9 @@ public class TopPage extends TemplatePage {
                         setResponsePage(new EditEnquetePage(listItem.getModel()));
                     }
                 }.add(new Label("enqueteTitleLabel", Model.of(listItem.getModelObject().getTitle()))));
-                listItem.add(new Label("startDateTimeLabel",listItem.getModelObject().getStartDateTime()));
-                listItem.add(new Label("endDateTimeLabel",listItem.getModelObject().getEndDateTime()));
-                listItem.add(new Label("postedDateTimeLabel",listItem.getModelObject().getPostedDateTime()));
+                listItem.add(new Label("startDateTimeLabel", listItem.getModelObject().getStartDateTime()));
+                listItem.add(new Label("endDateTimeLabel", listItem.getModelObject().getEndDateTime()));
+                listItem.add(new Label("postedDateTimeLabel", listItem.getModelObject().getPostedDateTime()));
                 listItem.add(new Link<>("toViewResultPage") {
                     @Override
                     public void onClick() {
