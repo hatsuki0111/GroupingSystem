@@ -130,5 +130,11 @@ public class CreateEnquetePage extends TemplatePage {
                 setResponsePage(EnqueteRegistrationCompletionPage.class);
             }
         });
+//        add(new Link<>("toTopPage") {
+//            @Override
+//            public void onClick() {
+//                setResponsePage(TopPage.class);
+//            }
+//        });
     }
 }

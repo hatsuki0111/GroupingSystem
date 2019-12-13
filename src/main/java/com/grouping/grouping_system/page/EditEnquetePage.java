@@ -14,6 +14,7 @@ import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.CheckBoxMultipleChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
@@ -106,8 +107,14 @@ public class EditEnquetePage extends TemplatePage {
                     public void onSubmit() {
                         super.onSubmit();
                         editEnqueteService.editEnquete(enqueteModel.getObject(), selectedAccountNameListModel.getObject(), groupNameListModel.getObject());
-                        setResponsePage(EnqueteRegistrationCompletionPage.class);
+                        setResponsePage(EditEnqueteCompletionPage.class);
                     }
                 });
+//        add(new Link<>("toTopPage") {
+//            @Override
+//            public void onClick() {
+//                setResponsePage(TopPage.class);
+//            }
+//        });
     }
 }

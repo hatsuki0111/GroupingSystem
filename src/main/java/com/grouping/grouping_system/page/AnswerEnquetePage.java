@@ -5,6 +5,7 @@ import com.grouping.grouping_system.bean.Option;
 import com.grouping.grouping_system.service.AnswerEnqueteService;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.*;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -47,7 +48,14 @@ public class AnswerEnquetePage extends TemplatePage {
             public void onSubmit() {
                 super.onSubmit();
                 answerEnqueteService.registerSelectedOption(enquete.getId(), selectedOptionModel.getObject());
+                setResponsePage(AnswerEnqueteCompletionPage.class);
             }
         });
+//        add(new Link<>("toTopPage") {
+//            @Override
+//            public void onClick() {
+//                setResponsePage(TopPage.class);
+//            }
+//        });
     }
 }

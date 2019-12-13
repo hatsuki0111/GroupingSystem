@@ -6,6 +6,7 @@ import com.grouping.grouping_system.bean.SelectedOption;
 import com.grouping.grouping_system.service.IAnswerEnqueteService;
 import com.grouping.grouping_system.service.IViewResultService;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
@@ -35,6 +36,12 @@ public class ViewResultPage extends TemplatePage {
                         listItem.add(new Label("accountNameLabel",listItem.getModelObject().getAccountName()));
                     }
                 });
+            }
+        });
+        add(new Link<>("toTopPage") {
+            @Override
+            public void onClick() {
+                setResponsePage(TopPage.class);
             }
         });
     }

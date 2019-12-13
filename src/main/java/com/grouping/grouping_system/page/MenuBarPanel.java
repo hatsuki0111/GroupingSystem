@@ -19,11 +19,11 @@ public class MenuBarPanel extends Panel {
                 setResponsePage(CreateEnquetePage.class);
             }
         });
-        add(new Link<>("toSignInPage") {
+        add(new Link<>("toSignOutCompletionPage") {
             @Override
             public void onClick() {
                 SigningSession.get().invalidate();
-                setResponsePage(SignInPage.class);
+                setResponsePage(SignOutCompletionPage.class);
             }
         });
     }

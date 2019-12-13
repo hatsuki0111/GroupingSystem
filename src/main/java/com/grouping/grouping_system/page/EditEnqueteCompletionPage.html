@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:wicket="http://wicket.apache.org">
+<html lang="en" xmlns:wicket="http://wicket.apache.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>編集完了</title>
     <wicket:link>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
               integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -19,26 +19,6 @@
     </wicket:link>
 </head>
 <body>
-<wicket:panel>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a wicket:id="toTopPage" href="#" class="navbar-brand text-white">Grouping System</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#toggle-target"
-                aria-controls="toggle-target" aria-expanded="false">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="toggle-target" class="collapse navbar-collapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a wicket:id="toCreateEnquetePage" href="#" class="nav-link">CreateEnquetePage</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav">
-                <li wicket:id="toSignOutCompletionPage" class="nav-item">
-                    <a href="#" class="nav-link">Sign Out</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</wicket:panel>
+    <span>アンケートを編集しました。<a wicket:id="toTopPage">Topへ戻る</a></span>
 </body>
 </html>
