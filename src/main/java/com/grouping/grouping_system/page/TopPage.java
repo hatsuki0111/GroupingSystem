@@ -1,16 +1,22 @@
 package com.grouping.grouping_system.page;
 
+import com.giffing.wicket.spring.boot.context.scan.WicketHomePage;
 import com.grouping.grouping_system.bean.Enquete;
 import com.grouping.grouping_system.service.IAnswerEnqueteService;
 import com.grouping.grouping_system.service.IEditEnqueteService;
+import org.apache.wicket.authroles.authorization.strategies.role.Roles;
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.springframework.context.annotation.Role;
 import org.wicketstuff.annotation.mount.MountPath;
 
+@WicketHomePage
+@AuthorizeInstantiation(Roles.USER)
 @MountPath("Top")
 public class TopPage extends TemplatePage {
 
