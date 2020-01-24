@@ -1,4 +1,4 @@
-package com.grouping.grouping_system.page;
+package com.grouping.grouping_system.page.panel;
 
 import org.apache.wicket.markup.html.panel.Panel;
 

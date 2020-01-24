@@ -1,6 +1,9 @@
-package com.grouping.grouping_system.page;
+package com.grouping.grouping_system.page.panel;
 
 import com.grouping.grouping_system.SigningSession;
+import com.grouping.grouping_system.page.CreateEnquetePage;
+import com.grouping.grouping_system.page.SignOutCompletionPage;
+import com.grouping.grouping_system.page.TopPage;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 

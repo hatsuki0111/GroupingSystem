@@ -2,7 +2,7 @@
 <html lang="en" xmlns:wicket="http://wicket.apache.org">
 <head>
     <meta charset="UTF-8">
-    <title>SignOut</title>
+    <title>Title</title>
     <wicket:link>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
               integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -21,9 +21,29 @@
 <body>
 <div wicket:id="menuBar"></div>
 <div class="container">
-    <div class="text-center">
-        <span class="h1">サインアウトしました。<a class="link" wicket:id="toSignInPage">Topへ戻る</a></span>
+    <h1>Evaluation</h1>
+    <div>
+        <p>アンケート名:<span wicket:id="title">{アンケート名}</span> アンケート作成者:<span
+                wicket:id="authorAccountName">{アンケート作成者名}</span></p>
     </div>
+    <ul>
+        <li wicket:id="evaluatorList">
+            <table class="table table-bordered table-sm">
+                <tr>
+                    <th>項目</th>
+                    <th>評価</th>
+                </tr>
+                <tr wicket:id="gradeList">
+                    <td>
+                        <p><span wicket:id="name">{項目名}</span></p>
+                    </td>
+                    <td>
+                        <p><span wicket:id="grade">{グレード}</span></p>
+                    </td>
+                </tr>
+            </table>
+        </li>
+    </ul>
 </div>
 <div wicket:id="footer"></div>
 </body>

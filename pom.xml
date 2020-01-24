@@ -89,12 +89,12 @@
             <artifactId>wicket-spring-boot-context</artifactId>
             <version>2.1.7</version>
         </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>RELEASE</version>
-            <scope>test</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.junit.jupiter</groupId>-->
+<!--            <artifactId>junit-jupiter-api</artifactId>-->
+<!--            <version>RELEASE</version>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>
@@ -110,13 +110,13 @@
                     <executable>
                         true
                     </executable>
-                    <mainClass>com.grouping.grouping_system.GroupingSystemApplication</mainClass>
+                    <!--<mainClass>com.grouping.grouping_system.GroupingSystemApplication</mainClass>-->
                 </configuration>
             </plugin>
-            <plugin>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.1.0</version>
-            </plugin>
+            <!--<plugin>-->
+                <!--<artifactId>maven-war-plugin</artifactId>-->
+                <!--<version>3.1.0</version>-->
+            <!--</plugin>-->
         </plugins>
         <resources>
             <resource>
