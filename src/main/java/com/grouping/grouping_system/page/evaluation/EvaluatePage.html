@@ -24,22 +24,26 @@
     <div>
         <p><span wicket:id="title">{アンケート名}</span></p>
         <p><span wicket:id="author">{アンケート作成者}</span></p>
-        <ul>
-            <li wicket:id="">
-                <table>
-                    <tr>
-                        <th>項目</th>
-                        <th>評価</th>
-                    </tr>
-                    <tr wicket:id="evaluationList">
-                        <td><span wicket:id="name">{項目}</span></td>
-                        <td>
-                            <div wicket:id="grade">{評価}</div>
-                        </td>
-                    </tr>
-                </table>
-            </li>
-        </ul>
+        <form wicket:id="form">
+            <ul>
+                <li wicket:id="evaluateeList">
+                    <p><span wicket:id="evaluateeName"></span></p>
+                    <table>
+                        <tr>
+                            <th>項目</th>
+                            <th>評価</th>
+                        </tr>
+                        <tr wicket:id="evaluationList">
+                            <td><span wicket:id="name">{項目}</span></td>
+                            <td>
+                                <select wicket:id="grade">{評価}</select>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+            <input wicket:id="submitButton" type="submit">
+        </form>
     </div>
 </div>
 <div wicket:id="footer"></div>

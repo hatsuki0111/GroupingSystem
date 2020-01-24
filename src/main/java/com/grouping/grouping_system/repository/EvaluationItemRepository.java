@@ -1,6 +1,8 @@
 package com.grouping.grouping_system.repository;
 
+import com.grouping.grouping_system.bean.evaluation.EvaluationItem;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -22,8 +24,10 @@ public class EvaluationItemRepository implements IEvaluationItemRepository {
     }
 
     @Override
-    public List<Long> find(long enqueteId) {
-        var sql = "select EVALUATION_ITEM_ID from ENQUETE_EVALUATION_ITEM where ENQUETE_ID = ?";
-        return jdbc.queryForList(sql, Long.class, enqueteId);
+    public List<EvaluationItem> find(long enqueteId) {
+        var sql = "select EVALUATION_ITEM_ID as ID, NAME from ENQUETE_EVALUATION_ITEM " +
+                "inner join EVALUATION_ITEM on ENQUETE_EVALUATION_ITEM.EVALUATION_ITEM_ID = EVALUATION_ITEM.ID " +
+                "where ENQUETE_ID = ?";
+        return jdbc.query(sql, new BeanPropertyRowMapper<>(EvaluationItem.class), enqueteId);
     }
 }

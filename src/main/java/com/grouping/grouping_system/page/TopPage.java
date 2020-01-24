@@ -55,10 +55,16 @@ public class TopPage extends TemplatePage {
                         setResponsePage(new ViewResultPage(listItem.getModel()));
                     }
                 });
-                listItem.add(new Link<>("toEvaluationPage") {
+                listItem.add(new Link<>("toViewEvaluationPage") {
                     @Override
                     public void onClick() {
                         setResponsePage(new ViewEvaluationPage(listItem.getModel()));
+                    }
+                });
+                listItem.add(new Link<>("toEvaluatePage") {
+                    @Override
+                    public void onClick() {
+                        setResponsePage(new EvaluatePage(listItem.getModelObject().getId()));
                     }
                 });
             }

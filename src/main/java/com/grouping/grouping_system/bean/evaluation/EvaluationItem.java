@@ -7,12 +7,11 @@ import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
-public class EvaluationGrade implements Serializable {
-    private long evaluationItemId;
+public class EvaluationItem implements Serializable {
+    private long id;
     private String name;
-    private int grade;
 
-    public EvaluationGrade() {
-        this(0, "", 0);
+    public EvaluationItem(){
+        this(0,"");
     }
 }
