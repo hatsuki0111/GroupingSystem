@@ -21,24 +21,24 @@
 <body>
 <div wicket:id="menuBar"></div>
 <div class="container">
-    <h1>Evaluation</h1>
+    <h1>あなたに対する評価一覧</h1>
     <div>
         <p>アンケート名:<span wicket:id="title">{アンケート名}</span> アンケート作成者:<span
                 wicket:id="authorAccountName">{アンケート作成者名}</span></p>
     </div>
-    <ul>
-        <li wicket:id="evaluatorList">
-            <table class="table table-bordered table-sm">
-                <tr>
+    <ul class="list-group">
+        <li wicket:id="evaluatorList" class="list-group-item">
+            <table class="table table-sm table-striped table-bordered table-hover">
+                <tr class="thead-dark text-center">
                     <th>項目</th>
                     <th>評価</th>
                 </tr>
                 <tr wicket:id="gradeList">
                     <td>
-                        <p><span wicket:id="name">{項目名}</span></p>
+                        <span wicket:id="name">{項目名}</span>
                     </td>
                     <td>
-                        <p><span wicket:id="grade">{グレード}</span></p>
+                        <span wicket:id="grade">{グレード}</span>
                     </td>
                 </tr>
             </table>

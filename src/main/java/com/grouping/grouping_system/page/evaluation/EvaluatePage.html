@@ -20,29 +20,33 @@
 </head>
 <body>
 <div wicket:id="menuBar"></div>
-<div class="container">
+<div class="container pb-5">
     <div>
         <p><span wicket:id="title">{アンケート名}</span></p>
         <p><span wicket:id="author">{アンケート作成者}</span></p>
         <form wicket:id="form">
-            <ul>
-                <li wicket:id="evaluateeList">
-                    <p><span wicket:id="evaluateeName"></span></p>
-                    <table>
-                        <tr>
-                            <th>項目</th>
-                            <th>評価</th>
-                        </tr>
-                        <tr wicket:id="evaluationList">
-                            <td><span wicket:id="name">{項目}</span></td>
-                            <td>
-                                <select wicket:id="grade">{評価}</select>
-                            </td>
-                        </tr>
-                    </table>
-                </li>
-            </ul>
-            <input wicket:id="submitButton" type="submit">
+            <div class="pb-2">
+                <ul class="list-group">
+                    <li wicket:id="evaluateeList" class="list-group-item">
+                        <p><span wicket:id="evaluateeName"></span>さんに対する評価</p>
+                        <table class="table table-sm table-striped table-bordered table-hover">
+                            <tr class="thead-dark text-center">
+                                <th>項目</th>
+                                <th>評価</th>
+                            </tr>
+                            <tr wicket:id="evaluationList">
+                                <td><span wicket:id="name">{項目}</span></td>
+                                <td>
+                                    <select wicket:id="grade">{評価}</select>
+                                </td>
+                            </tr>
+                        </table>
+                    </li>
+                </ul>
+            </div>
+            <div class="text-center">
+                <input wicket:id="submitButton" type="submit" class="btn btn-outline-secondary">
+            </div>
         </form>
     </div>
 </div>
